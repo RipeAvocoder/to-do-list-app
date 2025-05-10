@@ -1,15 +1,17 @@
 require("dotenv").config();
 const connectDB = require('./config/db');
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+const taskRoutes = require("./routes/tasks");
 const express = require("express");
+
 
 const app = express();
 const PORT = 3000;
 
+app.use("/api/tasks", taskRoutes);
+
 app.get("/", (req, res) => {
-  // Using send function we send
-  // response to the client
-  // Here we are sending html
   res.send("<h1> Hello World! </h1>");
 });
 
