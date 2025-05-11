@@ -1,18 +1,12 @@
 const Task = require("../models/Task");
-// const asyncHandler = require("express-async-handler");
+const asyncHandler = require("express-async-handler");
 
 // @desc    Get all tasks
 // @route   GET /api/tasks
-const getAllTasks = async (req, res) => {
-  try {
+const getAllTasks = asyncHandler (async (req, res) => {
     const tasks = await Task.find({}); // Fetch all tasks from the database
     res.status(200).json({ success: true, count: tasks.length, data: tasks });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, error: "Server Error: " + error.message });
-  }
-};
+});
 
 // @desc    Create a new task
 // @route   POST /api/tasks
