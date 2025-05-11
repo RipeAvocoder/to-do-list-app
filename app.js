@@ -12,6 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/tasks", taskRoutes);
 
+const { errorHandler } = require('./middleware/errorMiddleware');
+app.use(errorHandler);
+
 app.get("/", (req, res) => {
   res.send("<h1> Hello World! </h1>");
 });
