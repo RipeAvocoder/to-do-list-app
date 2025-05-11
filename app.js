@@ -12,7 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/tasks", taskRoutes);
 
-// Error handling middleware
 const { errorHandler } = require('./middleware/errorMiddleware');
 app.use(errorHandler);
 
