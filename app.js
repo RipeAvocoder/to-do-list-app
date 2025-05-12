@@ -5,7 +5,7 @@ const express = require("express");
 
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 // Middleware
 app.use(express.json());
@@ -32,4 +32,16 @@ app.listen(PORT, (error) => {
       "Server is Successfully Running, and App is listening on port " + PORT
     );
   else console.log("Error occurred, server can't start", error);
+});
+
+// Static File Server
+app.use(express.static('public'));
+
+app.use((req, res) => {
+  console.warn(`404 - Page not found: ${req.originalUrl}`);
+  res.status(404).send(`OOPS! Page not found.`);
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
