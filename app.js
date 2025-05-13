@@ -5,12 +5,13 @@ const express = require("express");
 
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/tasks", taskRoutes);
+
 
 const { errorHandler } = require('./middleware/errorMiddleware');
 app.use(errorHandler);
