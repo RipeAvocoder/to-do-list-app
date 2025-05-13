@@ -57,6 +57,8 @@ const updateTask = async (req, res) => {
       return res.status(404).json({ success: false, error: 'Task not found' });
     }
 
+    const { title, completed } = req.body;
+
     if (title !== undefined && title.trim() === "") {
       // If title is provided but is empty
       return res
@@ -74,8 +76,8 @@ const updateTask = async (req, res) => {
     }
 
     task = await Task.findByIdAndUpdate(req.params.id, req.body, {
-      new: true, // Return the modified document rather than the original
-      runValidators: true // Run schema validators on update
+      new: true,
+      runValidators: true
     });
 
     res.status(200).json({ success: true, data: task });
