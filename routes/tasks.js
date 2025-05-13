@@ -31,6 +31,7 @@ router.put('/:id', updateTask);
 // @desc    Delete a task
 // @route   DELETE /api/tasks/:id
 // @access  Public
+router.delete('/:id', deleteTask);
 
 
 module.exports = router;
