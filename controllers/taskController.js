@@ -97,9 +97,9 @@ const deleteTask = async (req, res) => {
       return res.status(404).json({ success: false, error: 'Task not found' });
     }
 
-    await task.deleteOne(); // or Task.findByIdAndDelete(req.params.id)
+    await Task.findByIdAndDelete(req.params.id)
 
-    res.status(200).json({ success: true, data: {} }); // Or a message like { message: 'Task removed' }
+    res.status(200).json({ success: true, data: {} });
   } catch (error) {
      if (error.name === 'CastError') {
         return res.status(400).json({ success: false, error: 'Invalid Task ID format' });
