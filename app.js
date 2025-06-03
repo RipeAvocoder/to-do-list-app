@@ -27,6 +27,14 @@ app.get("/quit", function (req, res) {
 
 connectDB();
 
+// Serve static files from the "public" folder
+app.use(express.static('public'));
+
+app.use((req, res) => {
+  console.log(`404 Error: Requested URL - ${req.originalUrl}`);
+  res.status(404).send('404 Not Found');
+});
+
 app.listen(PORT, (error) => {
   if (!error)
     console.log(
